@@ -1,9 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap");
 
-/* =========================================================
-   GLOBAL
-========================================================= */
-
 :root {
   font-family: "Inter", sans-serif;
   color: #29313d;
@@ -21,6 +17,7 @@
 html,
 body,
 #root {
+  width: 100%;
   min-width: 320px;
   min-height: 100%;
 }
@@ -30,20 +27,20 @@ body {
   background: #e9eef3;
 }
 
-button,
-select,
-input {
-  font: inherit;
-}
-
 button {
+  font: inherit;
   border: none;
   cursor: pointer;
 }
 
+select,
+input,
+button {
+  font-family: inherit;
+}
 
 /* =========================================================
-   MAIN APP
+   APP
 ========================================================= */
 
 .app {
@@ -51,7 +48,6 @@ button {
   display: flex;
   background: #e9eef3;
 }
-
 
 /* =========================================================
    SIDEBAR
@@ -85,7 +81,6 @@ button {
 .brand-icon {
   width: 46px;
   height: 46px;
-  flex-shrink: 0;
 
   border-radius: 14px;
 
@@ -149,9 +144,8 @@ button {
 .nav-item span {
   width: 22px;
 
-  text-align: center;
-
   font-size: 17px;
+  text-align: center;
 }
 
 .nav-item:hover {
@@ -190,6 +184,7 @@ button {
 .status-dot {
   width: 9px;
   height: 9px;
+
   flex-shrink: 0;
 
   border-radius: 50%;
@@ -217,9 +212,8 @@ button {
   font-size: 9px;
 }
 
-
 /* =========================================================
-   MAIN CONTENT
+   MAIN
 ========================================================= */
 
 .main-content {
@@ -313,7 +307,7 @@ button {
   display: grid;
   place-items: center;
 
-  color: #ffffff;
+  color: white;
   background: #536dfe;
 
   font-size: 11px;
@@ -337,7 +331,6 @@ button {
   font-size: 9px;
 }
 
-
 /* =========================================================
    KPI
 ========================================================= */
@@ -345,7 +338,6 @@ button {
 .kpi-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-
   gap: 18px;
 
   margin-bottom: 20px;
@@ -435,7 +427,6 @@ button {
   color: #2da66b;
 }
 
-
 /* =========================================================
    DASHBOARD CARDS
 ========================================================= */
@@ -457,11 +448,6 @@ button {
 .network-card,
 .route-card {
   padding: 21px;
-}
-
-.map-card {
-  min-width: 0;
-  overflow: visible;
 }
 
 .card-header {
@@ -494,750 +480,263 @@ button {
   font-weight: 700;
 }
 
-
 /* =========================================================
-   RESQMESH EMERGENCY MAP ROOT
+   OLD MAP PLACEHOLDER SUPPORT
 ========================================================= */
 
-.emergency-map {
+.map-placeholder {
   position: relative;
 
-  width: 100%;
-  height: auto;
-  min-height: 0;
-
-  overflow: visible;
-
-  border-radius: 0;
-
-  background: transparent;
-
-  box-shadow: none;
-}
-
-
-/* =========================================================
-   MAP SELECTOR
-========================================================= */
-
-.resq-map-selector {
-  width: 100%;
-
-  margin: 0 0 12px;
-
-  padding: 14px 16px;
-
-  border-radius: 16px;
-
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-
-  gap: 18px;
-
-  background: #e9eef3;
-
-  box-shadow:
-    6px 6px 14px rgba(163, 177, 198, 0.3),
-    -6px -6px 14px rgba(255, 255, 255, 0.9);
-}
-
-.resq-map-selector-info {
-  display: flex;
-  flex-direction: column;
-
-  gap: 3px;
-
-  min-width: 0;
-}
-
-.resq-map-selector-info span {
-  color: #8993a1;
-
-  font-size: 8px;
-  font-weight: 800;
-
-  letter-spacing: 1.2px;
-}
-
-.resq-map-selector-info strong {
-  color: #29313d;
-
-  font-size: 14px;
-  font-weight: 800;
-}
-
-.resq-map-selector-select {
-  width: 280px;
-  max-width: 48%;
-
-  height: 42px;
-
-  padding: 0 38px 0 14px;
-
-  border: none;
-  outline: none;
-
-  border-radius: 12px;
-
-  color: #29313d;
-  background: #e9eef3;
-
-  font-size: 11px;
-  font-weight: 800;
-
-  cursor: pointer;
-
-  box-shadow:
-    inset 3px 3px 7px rgba(163, 177, 198, 0.28),
-    inset -3px -3px 7px rgba(255, 255, 255, 0.9);
-}
-
-.resq-map-selector-select:focus {
-  box-shadow:
-    inset 3px 3px 7px rgba(163, 177, 198, 0.28),
-    inset -3px -3px 7px rgba(255, 255, 255, 0.9),
-    0 0 0 2px rgba(83, 109, 254, 0.15);
-}
-
-
-/* =========================================================
-   ACTIVE MAP INFORMATION
-========================================================= */
-
-.active-map-info {
-  width: 100%;
-
-  margin: 0 0 12px;
-  padding: 13px 16px;
-
-  border-radius: 15px;
-
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-
-  gap: 20px;
-
-  background: #e9eef3;
-
-  box-shadow:
-    5px 5px 12px rgba(163, 177, 198, 0.25),
-    -5px -5px 12px rgba(255, 255, 255, 0.85);
-}
-
-.active-map-info > div:first-child {
-  min-width: 0;
-
-  display: flex;
-  flex-direction: column;
-
-  gap: 3px;
-}
-
-.active-map-info > div:first-child > span {
-  color: #8993a1;
-
-  font-size: 7px;
-  font-weight: 800;
-
-  letter-spacing: 1px;
-}
-
-.active-map-info > div:first-child > strong {
-  color: #29313d;
-
-  font-size: 13px;
-  font-weight: 800;
-}
-
-.active-map-info > div:first-child > small {
-  color: #7f8997;
-
-  font-size: 9px;
-}
-
-.active-map-stats {
-  display: flex;
-  align-items: center;
-
-  gap: 20px;
-
-  flex-shrink: 0;
-}
-
-.active-map-stats > div {
-  min-width: 52px;
-
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-
-  gap: 2px;
-}
-
-.active-map-stats strong {
-  color: #29313d;
-
-  font-size: 16px;
-}
-
-.active-map-stats span {
-  color: #8993a1;
-
-  font-size: 7px;
-  font-weight: 800;
-
-  letter-spacing: 0.6px;
-}
-
-
-/* =========================================================
-   ROUTE CONTROL PANEL
-========================================================= */
-
-.route-control-panel {
-  position: relative;
-
-  z-index: 5;
-
-  width: 100%;
-
-  margin: 0 0 12px;
-  padding: 14px 16px;
-
-  border-radius: 17px;
-
-  background: #e9eef3;
-
-  box-shadow:
-    6px 6px 14px rgba(163, 177, 198, 0.28),
-    -6px -6px 14px rgba(255, 255, 255, 0.88);
-
-  overflow: visible;
-}
-
-.route-control-panel > div:first-child {
-  display: flex;
-
-  margin: 0 0 10px !important;
-
-  flex-wrap: wrap;
-}
-
-.route-control-heading {
-  width: 100%;
-
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-
-  gap: 12px;
-
-  margin-bottom: 11px !important;
-}
-
-.route-control-eyebrow {
-  color: #8993a1;
-
-  font-size: 8px;
-  font-weight: 800;
-
-  letter-spacing: 1.3px;
-}
-
-.route-control-heading h3 {
-  margin-top: 3px;
-
-  color: #29313d;
-
-  font-size: 16px;
-  font-weight: 800;
-}
-
-.route-control-badge {
-  padding: 7px 9px;
-
-  border-radius: 9px;
-
-  color: #2d9f66;
-  background: #dff2e8;
-
-  font-size: 7px;
-  font-weight: 800;
-
-  white-space: nowrap;
-}
-
-.route-select-grid {
-  width: 100%;
-
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-
-  gap: 12px;
-}
-
-.route-select-group {
-  min-width: 0;
-}
-
-.route-select-group label {
-  display: block;
-
-  margin-bottom: 5px;
-
-  color: #8993a1;
-
-  font-size: 8px;
-  font-weight: 800;
-
-  letter-spacing: 0.7px;
-}
-
-.route-select-group select {
-  width: 100%;
-
-  height: 39px;
-
-  padding: 0 12px;
-
-  border: none;
-  outline: none;
-
-  border-radius: 10px;
-
-  color: #29313d;
-  background: #eef2f6;
-
-  font-size: 10px;
-  font-weight: 700;
-
-  cursor: pointer;
-
-  box-shadow:
-    inset 3px 3px 7px rgba(163, 177, 198, 0.2),
-    inset -3px -3px 7px rgba(255, 255, 255, 0.85);
-}
-/* =========================================================
-   ACTUAL LEAFLET MAP
-========================================================= */
-
-.map-container-wrapper {
-  position: relative;
-
-  z-index: 1;
-
-  width: 100%;
-
-  height: 560px;
-  min-height: 560px;
-  max-height: 560px;
-
-  margin: 0 0 14px;
+  height: 370px;
 
   overflow: hidden;
 
-  border-radius: 18px;
+  border-radius: 17px;
 
-  background: #e9eef3;
+  background:
+    linear-gradient(
+      135deg,
+      #edf2f5,
+      #e1e7ec
+    );
 
   box-shadow:
-    inset 6px 6px 13px rgba(163, 177, 198, 0.3),
+    inset 6px 6px 13px rgba(163, 177, 198, 0.32),
     inset -6px -6px 13px rgba(255, 255, 255, 0.9);
 }
 
-.resqmesh-map {
-  position: relative;
+.map-grid {
+  position: absolute;
+  inset: 0;
 
-  width: 100% !important;
-  height: 560px !important;
-  min-height: 0 !important;
+  background-image:
+    linear-gradient(
+      rgba(160, 171, 184, 0.13) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      rgba(160, 171, 184, 0.13) 1px,
+      transparent 1px
+    );
 
-  border-radius: 18px;
-
-  background: #e9eef3;
+  background-size: 30px 30px;
 }
 
-.resqmesh-map .leaflet-container {
-  width: 100% !important;
-  height: 100% !important;
+.map-road {
+  position: absolute;
 
-  background: #e9eef3;
-}
+  height: 9px;
 
+  border-radius: 10px;
 
-/* =========================================================
-   LEAFLET CONTROLS
-========================================================= */
-
-.resqmesh-map .leaflet-control-zoom {
-  border: none !important;
-  box-shadow: none !important;
-}
-
-.resqmesh-map .leaflet-control-zoom a {
-  width: 32px !important;
-  height: 32px !important;
-
-  margin-bottom: 5px;
-
-  border: none !important;
-  border-radius: 10px !important;
-
-  color: #536dfe !important;
-  background: #e9eef3 !important;
-
-  line-height: 32px !important;
+  background: #ffffff;
 
   box-shadow:
-    4px 4px 9px rgba(163, 177, 198, 0.3),
-    -4px -4px 9px rgba(255, 255, 255, 0.9);
+    0 2px 4px rgba(100, 110, 120, 0.15);
 }
 
-.resqmesh-map .leaflet-control-attribution {
-  display: none;
+.road-one {
+  width: 75%;
+  top: 47%;
+  left: 12%;
+
+  transform: rotate(12deg);
 }
 
+.road-two {
+  width: 60%;
+  top: 63%;
+  left: 20%;
 
-/* =========================================================
-   ROUTE STATUS
-========================================================= */
-
-.route-status-panel {
-  position: relative;
-
-  width: 100%;
-
-  margin: 0 0 14px;
+  transform: rotate(-28deg);
 }
 
-.route-status-card {
-  width: 100%;
+.road-three {
+  width: 50%;
+  top: 27%;
+  left: 25%;
 
-  padding: 14px 16px;
-
-  border-radius: 15px;
-
-  display: flex;
-  align-items: center;
-
-  gap: 12px;
-
-  background: #e9eef3;
-
-  box-shadow:
-    5px 5px 12px rgba(163, 177, 198, 0.25),
-    -5px -5px 12px rgba(255, 255, 255, 0.85);
+  transform: rotate(50deg);
 }
 
-.route-status-card.safe {
-  border-left: 4px solid #2db273;
+.map-zone {
+  position: absolute;
+
+  padding: 9px 13px;
+
+  border-radius: 10px;
+
+  font-size: 8px;
+  font-weight: 800;
+
+  letter-spacing: 0.8px;
 }
 
-.route-status-card.danger {
-  border-left: 4px solid #e45c63;
+.zone-one {
+  top: 22%;
+  left: 18%;
+
+  color: #c75a5e;
+  background: rgba(244, 194, 196, 0.6);
 }
 
-.route-status-icon {
-  width: 35px;
-  height: 35px;
+.zone-two {
+  right: 17%;
+  bottom: 22%;
 
-  flex-shrink: 0;
+  color: #b77d30;
+  background: rgba(244, 221, 180, 0.65);
+}
 
-  border-radius: 11px;
+.map-marker {
+  position: absolute;
+
+  width: 31px;
+  height: 31px;
+
+  border-radius: 50%;
 
   display: grid;
   place-items: center;
 
   color: #ffffff;
 
+  font-size: 11px;
   font-weight: 800;
+
+  box-shadow:
+    0 5px 12px rgba(70, 80, 90, 0.22);
 }
 
-.route-status-card.safe .route-status-icon {
-  background: #2db273;
-}
+.marker-danger {
+  top: 34%;
+  left: 28%;
 
-.route-status-card.danger .route-status-icon {
   background: #e45c63;
 }
 
-.route-status-content {
-  min-width: 0;
+.marker-safe {
+  right: 22%;
+  bottom: 29%;
+
+  background: #2db273;
 }
 
-.route-status-label {
+.marker-warning {
+  top: 54%;
+  right: 31%;
+
+  background: #e0a044;
+}
+
+.map-label {
+  position: absolute;
+
+  padding: 5px 8px;
+
+  border-radius: 7px;
+
+  background: rgba(255, 255, 255, 0.85);
+
+  font-size: 8px;
+  font-weight: 700;
+
+  box-shadow:
+    2px 2px 5px rgba(80, 90, 100, 0.12);
+}
+
+.label-danger {
+  top: 30%;
+  left: 33%;
+}
+
+.label-safe {
+  right: 12%;
+  bottom: 24%;
+}
+
+.label-warning {
+  top: 49%;
+  right: 20%;
+}
+
+.map-center-label {
+  position: absolute;
+
+  top: 46%;
+  left: 50%;
+
+  transform: translate(-50%, -50%);
+
+  text-align: center;
+
+  opacity: 0.65;
+}
+
+.map-center-label strong,
+.map-center-label span {
   display: block;
-
-  color: #8993a1;
-
-  font-size: 7px;
-  font-weight: 800;
-
-  letter-spacing: 1px;
 }
 
-.route-status-content strong {
-  display: block;
-
-  margin-top: 3px;
-
-  color: #29313d;
-
-  font-size: 12px;
+.map-center-label strong {
+  font-size: 14px;
+  letter-spacing: 2px;
 }
 
-.route-status-content p {
-  margin-top: 3px;
+.map-center-label span {
+  margin-top: 5px;
 
-  color: #7f8997;
+  color: #8b95a2;
 
   font-size: 9px;
 }
-
-
-/* =========================================================
-   ROUTE INFORMATION
-========================================================= */
-
-.route-info-card {
-  position: relative;
-
-  width: 100%;
-
-  margin: 0 0 14px;
-  padding: 12px;
-
-  border-radius: 15px;
-
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-
-  background: #e9eef3;
-
-  box-shadow:
-    5px 5px 12px rgba(163, 177, 198, 0.25),
-    -5px -5px 12px rgba(255, 255, 255, 0.85);
-}
-
-.route-info-item {
-  min-width: 0;
-
-  display: flex;
-  flex-direction: column;
-
-  align-items: center;
-  justify-content: center;
-
-  gap: 4px;
-}
-
-.route-info-item span {
-  color: #8993a1;
-
-  font-size: 7px;
-  font-weight: 800;
-
-  letter-spacing: 0.7px;
-}
-
-.route-info-item strong {
-  color: #29313d;
-
-  font-size: 13px;
-}
-
-.route-info-divider {
-  width: 1px;
-  min-height: 30px;
-
-  align-self: center;
-
-  background: rgba(150, 160, 170, 0.18);
-}
-
 
 /* =========================================================
    MAP LEGEND
 ========================================================= */
 
-.map-mini-legend {
+.map-legend {
   display: flex;
   flex-wrap: wrap;
+  gap: 18px;
 
-  gap: 12px;
-
-  margin: 0 0 14px;
+  margin-top: 15px;
 
   color: #7f8997;
 
-  font-size: 8px;
-  font-weight: 700;
+  font-size: 9px;
+  font-weight: 600;
 }
 
-.map-mini-legend span {
+.map-legend > div {
   display: flex;
   align-items: center;
-
-  gap: 5px;
+  gap: 6px;
 }
 
 .legend-dot {
   width: 7px;
   height: 7px;
 
-  display: inline-block;
-
   border-radius: 50%;
 }
 
-.hazard-dot,
 .danger-bg {
   background: #e45c63;
-}
-
-.shelter-dot,
-.success-bg {
-  background: #2db273;
-}
-
-.network-dot,
-.node-bg {
-  background: #536dfe;
 }
 
 .warning-bg {
   background: #e0a044;
 }
 
-.legend-line {
-  width: 16px;
-  height: 3px;
-
-  display: inline-block;
-
-  border-radius: 4px;
+.success-bg {
+  background: #2db273;
 }
 
-.blocked-line {
-  background: #e45c63;
-}
-
-.route-line {
+.node-bg {
   background: #536dfe;
 }
-
-
-/* =========================================================
-   LOADING
-========================================================= */
-
-.emergency-map-loading {
-  width: 100%;
-  min-height: 400px;
-
-  display: grid;
-  place-items: center;
-
-  border-radius: 18px;
-
-  background: #e9eef3;
-}
-
-.loading-card {
-  padding: 30px;
-
-  border-radius: 18px;
-
-  text-align: center;
-
-  background: #e9eef3;
-
-  box-shadow:
-    8px 8px 18px rgba(163, 177, 198, 0.35),
-    -8px -8px 18px rgba(255, 255, 255, 0.9);
-}
-
-.loading-card h3 {
-  margin-top: 14px;
-
-  font-size: 14px;
-}
-
-.loading-card p {
-  margin-top: 5px;
-
-  color: #8993a1;
-
-  font-size: 9px;
-}
-
-.loading-spinner {
-  width: 32px;
-  height: 32px;
-
-  margin: auto;
-
-  border: 3px solid #d9e0e7;
-  border-top-color: #536dfe;
-
-  border-radius: 50%;
-
-  animation: resqmesh-spin 0.8s linear infinite;
-}
-
-@keyframes resqmesh-spin {
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-
-/* =========================================================
-   MAP STATUS BANNER
-========================================================= */
-
-.map-status-banner {
-  width: 100%;
-
-  margin-bottom: 10px;
-
-  padding: 9px 12px;
-
-  border-radius: 10px;
-
-  display: flex;
-  align-items: center;
-
-  gap: 8px;
-
-  font-size: 8px;
-  font-weight: 700;
-}
-
-.map-status-banner.offline {
-  color: #a46f24;
-  background: #f5e7cb;
-}
-
-.map-status-banner.error {
-  color: #c5575d;
-  background: #f5dddd;
-}
-
-.map-status-dot {
-  width: 7px;
-  height: 7px;
-
-  flex-shrink: 0;
-
-  border-radius: 50%;
-
-  background: currentColor;
-}
-
-
 /* =========================================================
    EMERGENCY QUEUE
 ========================================================= */
@@ -1261,7 +760,6 @@ button {
 .alert-list {
   display: flex;
   flex-direction: column;
-
   gap: 10px;
 }
 
@@ -1272,7 +770,6 @@ button {
 
   display: flex;
   align-items: center;
-
   gap: 10px;
 
   background: #e9eef3;
@@ -1313,7 +810,6 @@ button {
 
 .alert-content {
   flex: 1;
-  min-width: 0;
 }
 
 .alert-content strong,
@@ -1353,7 +849,6 @@ button {
   width: 100%;
 
   margin-top: 15px;
-
   padding: 11px;
 
   border-radius: 11px;
@@ -1369,9 +864,8 @@ button {
   font-weight: 700;
 }
 
-
 /* =========================================================
-   BOTTOM CARDS
+   BOTTOM GRID
 ========================================================= */
 
 .bottom-grid {
@@ -1388,6 +882,10 @@ button {
   color: #2c9d65;
   background: #ddf1e6;
 }
+
+/* =========================================================
+   NETWORK
+========================================================= */
 
 .network-stats {
   display: grid;
@@ -1460,6 +958,10 @@ button {
   font-size: 8px;
 }
 
+/* =========================================================
+   ACTIVE ROUTES
+========================================================= */
+
 .route-card .card-header {
   margin-bottom: 7px;
 }
@@ -1477,7 +979,6 @@ button {
 
   display: flex;
   align-items: center;
-
   gap: 10px;
 
   border-bottom: 1px solid rgba(150, 160, 170, 0.12);
@@ -1505,7 +1006,6 @@ button {
 
 .route-info {
   flex: 1;
-  min-width: 0;
 }
 
 .route-info strong,
@@ -1535,6 +1035,825 @@ button {
   background: #f4e5c9;
 }
 
+/* =========================================================
+   INTERACTIVE EMERGENCY MAP
+   IMPORTANT: HEIGHT FIX
+========================================================= */
+
+.emergency-map {
+  position: relative;
+
+  width: 100%;
+
+  /*
+   * Increased from 370px.
+   * This gives the real Leaflet map enough
+   * vertical space inside the dashboard.
+   */
+  height: 560px;
+  min-height: 560px;
+
+  overflow: hidden;
+
+  border-radius: 17px;
+
+  background: #e4e9ee;
+
+  box-shadow:
+    inset 6px 6px 13px rgba(163, 177, 198, 0.32),
+    inset -6px -6px 13px rgba(255, 255, 255, 0.9);
+}
+
+/* =========================================================
+   MAP WRAPPER
+========================================================= */
+
+.map-container-wrapper {
+  position: absolute;
+
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  overflow: hidden;
+
+  border-radius: 17px;
+}
+
+/* =========================================================
+   LEAFLET MAP
+========================================================= */
+
+.resqmesh-map {
+  width: 100%;
+  height: 100%;
+
+  min-height: 0 !important;
+
+  background:
+    linear-gradient(
+      135deg,
+      #eef3f6,
+      #dde4ea
+    );
+}
+
+.resqmesh-map .leaflet-container {
+  width: 100%;
+  height: 100%;
+
+  min-height: 0 !important;
+
+  background:
+    linear-gradient(
+      135deg,
+      #eef3f6,
+      #dde4ea
+    );
+}
+
+/*
+ * Compatibility with older class name.
+ */
+.leaflet-map {
+  width: 100%;
+  height: 100%;
+
+  min-height: 0 !important;
+
+  background:
+    linear-gradient(
+      135deg,
+      #eef3f6,
+      #dde4ea
+    );
+}
+
+/* =========================================================
+   LEAFLET CONTROLS
+========================================================= */
+
+.leaflet-control-attribution {
+  display: none;
+}
+
+.leaflet-control-zoom {
+  border: none !important;
+
+  box-shadow:
+    4px 4px 10px rgba(163, 177, 198, 0.35),
+    -4px -4px 10px rgba(255, 255, 255, 0.9) !important;
+}
+
+.leaflet-control-zoom a {
+  color: #536dfe !important;
+
+  background: #e9eef3 !important;
+
+  border: none !important;
+}
+
+.leaflet-control-zoom a:hover {
+  background: #f4f6f8 !important;
+}
+
+/* =========================================================
+   MAP TITLE
+========================================================= */
+
+.fictional-map-title {
+  position: absolute;
+
+  z-index: 500;
+
+  top: 18px;
+  left: 50%;
+
+  transform: translateX(-50%);
+
+  padding: 10px 16px;
+
+  text-align: center;
+
+  border-radius: 12px;
+
+  background: rgba(233, 238, 243, 0.88);
+
+  box-shadow:
+    4px 4px 10px rgba(163, 177, 198, 0.3),
+    -4px -4px 10px rgba(255, 255, 255, 0.85);
+
+  pointer-events: none;
+}
+
+.fictional-map-title strong,
+.fictional-map-title span {
+  display: block;
+}
+
+.fictional-map-title strong {
+  color: #3d4653;
+
+  font-size: 11px;
+
+  letter-spacing: 2px;
+}
+
+.fictional-map-title span {
+  margin-top: 3px;
+
+  color: #8a94a1;
+
+  font-size: 7px;
+}
+
+/* =========================================================
+   MAP OVERLAY LEGEND
+========================================================= */
+
+.map-overlay-legend {
+  position: absolute;
+
+  z-index: 500;
+
+  left: 15px;
+  bottom: 15px;
+
+  display: flex;
+  flex-wrap: wrap;
+
+  gap: 8px;
+
+  max-width: 90%;
+
+  padding: 9px 11px;
+
+  border-radius: 11px;
+
+  background: rgba(233, 238, 243, 0.9);
+
+  box-shadow:
+    4px 4px 10px rgba(163, 177, 198, 0.3),
+    -4px -4px 10px rgba(255, 255, 255, 0.85);
+
+  color: #737e8c;
+
+  font-size: 8px;
+  font-weight: 700;
+
+  pointer-events: none;
+}
+
+.map-overlay-legend > div {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.legend-symbol {
+  width: 7px;
+  height: 7px;
+
+  border-radius: 50%;
+}
+
+.hazard-symbol {
+  background: #e45c63;
+}
+
+.shelter-symbol {
+  background: #2db273;
+}
+
+.node-symbol {
+  background: #536dfe;
+}
+
+.blocked-symbol {
+  background: #e45c63;
+}
+
+/* =========================================================
+   ROUTE STATUS OVERLAY
+========================================================= */
+
+.route-status-overlay {
+  position: absolute;
+
+  z-index: 600;
+
+  top: 18px;
+  right: 18px;
+
+  display: flex;
+  align-items: center;
+
+  gap: 9px;
+
+  padding: 9px 12px;
+
+  border-radius: 12px;
+
+  background: rgba(233, 238, 243, 0.94);
+
+  box-shadow:
+    4px 4px 10px rgba(163, 177, 198, 0.3),
+    -4px -4px 10px rgba(255, 255, 255, 0.9);
+}
+
+.route-status-icon {
+  width: 24px;
+  height: 24px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background: #2db273;
+
+  color: white;
+
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.route-status-overlay strong,
+.route-status-overlay span {
+  display: block;
+}
+
+.route-status-overlay strong {
+  color: #3d4653;
+
+  font-size: 8px;
+
+  letter-spacing: 0.8px;
+}
+
+.route-status-overlay span {
+  margin-top: 2px;
+
+  color: #89929d;
+
+  font-size: 7px;
+}
+
+.route-symbol {
+  background: #536dfe;
+}
+
+/* =========================================================
+   DYNAMIC ROUTE CONTROL
+========================================================= */
+
+.route-control-panel {
+  position: absolute;
+
+  z-index: 1000;
+
+  top: 16px;
+  left: 16px;
+
+  width: 390px;
+
+  padding: 14px 16px;
+
+  border-radius: 18px;
+
+  background: rgba(255, 255, 255, 0.94);
+
+  box-shadow:
+    8px 8px 18px rgba(163, 177, 198, 0.25),
+    -8px -8px 18px rgba(255, 255, 255, 0.8);
+
+  backdrop-filter: blur(10px);
+}
+
+.route-control-title {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+
+  margin-bottom: 12px;
+}
+
+.route-control-title span {
+  color: #7b8494;
+
+  font-size: 9px;
+  font-weight: 800;
+
+  letter-spacing: 1.4px;
+}
+
+.route-control-title strong {
+  color: #202633;
+
+  font-size: 14px;
+}
+
+.route-select-row {
+  display: flex;
+  align-items: end;
+
+  gap: 10px;
+}
+
+.route-select-group {
+  flex: 1;
+}
+
+.route-select-group label {
+  display: block;
+
+  margin-bottom: 5px;
+
+  color: #7b8494;
+
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.route-select-group select {
+  width: 100%;
+
+  padding: 9px 10px;
+
+  border: none;
+  outline: none;
+
+  border-radius: 10px;
+
+  background: #f1f4f8;
+
+  color: #303746;
+
+  font-size: 11px;
+  font-weight: 600;
+
+  box-shadow:
+    inset 2px 2px 5px rgba(163, 177, 198, 0.22),
+    inset -2px -2px 5px rgba(255, 255, 255, 0.8);
+
+  cursor: pointer;
+}
+
+.route-arrow {
+  padding-bottom: 8px;
+
+  color: #536dfe;
+
+  font-size: 18px;
+  font-weight: 800;
+}
+
+/* =========================================================
+   ROUTE INFO
+========================================================= */
+
+.route-info-card {
+  position: absolute;
+
+  z-index: 1000;
+
+  right: 16px;
+  bottom: 45px;
+
+  display: flex;
+
+  gap: 8px;
+
+  padding: 10px;
+
+  border-radius: 14px;
+
+  background: rgba(255, 255, 255, 0.94);
+
+  box-shadow:
+    6px 6px 15px rgba(163, 177, 198, 0.25),
+    -6px -6px 15px rgba(255, 255, 255, 0.8);
+
+  backdrop-filter: blur(8px);
+}
+
+.route-info-card > div {
+  min-width: 72px;
+
+  padding: 5px 8px;
+
+  text-align: center;
+}
+
+.route-info-card span {
+  display: block;
+
+  margin-bottom: 3px;
+
+  color: #8a92a1;
+
+  font-size: 8px;
+  font-weight: 700;
+
+  text-transform: uppercase;
+}
+
+.route-info-card strong {
+  color: #29313e;
+
+  font-size: 13px;
+}
+
+.safe-text {
+  color: #26a69a !important;
+}
+
+.danger-text {
+  color: #ef5350 !important;
+}
+/* =========================================================
+   MAP MINI LEGEND
+========================================================= */
+
+.map-mini-legend {
+  position: absolute;
+
+  z-index: 1000;
+
+  left: 16px;
+  bottom: 12px;
+
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+
+  gap: 10px;
+
+  padding: 7px 11px;
+
+  border-radius: 10px;
+
+  background: rgba(255, 255, 255, 0.92);
+
+  box-shadow:
+    3px 3px 10px rgba(163, 177, 198, 0.2);
+
+  color: #697281;
+
+  font-size: 9px;
+}
+
+.map-mini-legend span {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.legend-dot {
+  width: 7px;
+  height: 7px;
+
+  display: inline-block;
+
+  border-radius: 50%;
+}
+
+.hazard-dot {
+  background: #ef5350;
+}
+
+.shelter-dot {
+  background: #26a69a;
+}
+
+.network-dot {
+  background: #1976d2;
+}
+
+.legend-line {
+  width: 16px;
+  height: 3px;
+
+  display: inline-block;
+
+  border-radius: 4px;
+}
+
+.blocked-line {
+  background: #e53935;
+}
+
+.route-line {
+  background: #536dfe;
+}
+
+/* =========================================================
+   MAP STATUS BANNER
+========================================================= */
+
+.map-status-banner {
+  position: relative;
+
+  z-index: 1100;
+
+  width: 100%;
+
+  margin-bottom: 10px;
+
+  padding: 9px 13px;
+
+  border-radius: 10px;
+
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  font-size: 9px;
+  font-weight: 700;
+}
+
+.map-status-banner.offline {
+  color: #a97825;
+
+  background: #fff4d9;
+
+  box-shadow:
+    inset 2px 2px 5px rgba(190, 160, 90, 0.12),
+    inset -2px -2px 5px rgba(255, 255, 255, 0.75);
+}
+
+.map-status-banner.error {
+  color: #c85c62;
+
+  background: #f9e5e6;
+}
+
+.map-status-dot {
+  width: 7px;
+  height: 7px;
+
+  flex-shrink: 0;
+
+  border-radius: 50%;
+
+  background: currentColor;
+}
+
+/* =========================================================
+   LOADING STATE
+========================================================= */
+
+.emergency-map-loading {
+  width: 100%;
+  height: 560px;
+
+  display: grid;
+  place-items: center;
+
+  border-radius: 17px;
+
+  background: #e4e9ee;
+
+  box-shadow:
+    inset 6px 6px 13px rgba(163, 177, 198, 0.32),
+    inset -6px -6px 13px rgba(255, 255, 255, 0.9);
+}
+
+.loading-card {
+  width: min(90%, 320px);
+
+  padding: 30px;
+
+  border-radius: 18px;
+
+  text-align: center;
+
+  background: #e9eef3;
+
+  box-shadow:
+    8px 8px 18px rgba(163, 177, 198, 0.35),
+    -8px -8px 18px rgba(255, 255, 255, 0.9);
+}
+
+.loading-spinner {
+  width: 32px;
+  height: 32px;
+
+  margin: 0 auto 15px;
+
+  border: 3px solid #dce2e8;
+  border-top-color: #536dfe;
+
+  border-radius: 50%;
+
+  animation: resqmesh-spin 0.8s linear infinite;
+}
+
+.loading-card h3 {
+  color: #303746;
+
+  font-size: 15px;
+}
+
+.loading-card p {
+  margin-top: 7px;
+
+  color: #8b95a3;
+
+  font-size: 9px;
+}
+
+@keyframes resqmesh-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* =========================================================
+   ROUTE STATUS PANEL
+========================================================= */
+
+.route-status-panel {
+  width: 100%;
+
+  margin-top: 14px;
+}
+
+.route-status-card {
+  width: 100%;
+
+  padding: 14px 16px;
+
+  border-radius: 15px;
+
+  display: flex;
+  align-items: center;
+
+  gap: 12px;
+
+  background: #e9eef3;
+
+  box-shadow:
+    inset 3px 3px 7px rgba(163, 177, 198, 0.18),
+    inset -3px -3px 7px rgba(255, 255, 255, 0.75);
+}
+
+.route-status-card.safe {
+  border-left: 4px solid #2db273;
+}
+
+.route-status-card.danger {
+  border-left: 4px solid #e45c63;
+}
+
+.route-status-card .route-status-icon {
+  width: 34px;
+  height: 34px;
+
+  flex-shrink: 0;
+}
+
+.route-status-card.danger .route-status-icon {
+  background: #e45c63;
+}
+
+.route-status-content {
+  flex: 1;
+}
+
+.route-status-label {
+  display: block;
+
+  color: #8993a1;
+
+  font-size: 8px;
+  font-weight: 800;
+
+  letter-spacing: 1px;
+}
+
+.route-status-content strong {
+  display: block;
+
+  margin-top: 4px;
+
+  color: #303746;
+
+  font-size: 12px;
+}
+
+.route-status-content p {
+  margin-top: 4px;
+
+  color: #8a94a1;
+
+  font-size: 9px;
+}
+
+/* =========================================================
+   ROUTE INFORMATION CARD
+========================================================= */
+
+.route-info-card {
+  position: relative;
+
+  z-index: 10;
+
+  width: 100%;
+
+  margin-top: 12px;
+
+  right: auto;
+  bottom: auto;
+
+  display: flex;
+  justify-content: space-around;
+
+  gap: 8px;
+
+  padding: 12px;
+
+  border-radius: 15px;
+
+  background: #e9eef3;
+
+  box-shadow:
+    inset 3px 3px 7px rgba(163, 177, 198, 0.18),
+    inset -3px -3px 7px rgba(255, 255, 255, 0.75);
+}
+
+.route-info-item {
+  flex: 1;
+
+  text-align: center;
+}
+
+.route-info-item span {
+  display: block;
+
+  margin-bottom: 4px;
+
+  color: #8993a1;
+
+  font-size: 7px;
+  font-weight: 800;
+
+  letter-spacing: 0.8px;
+}
+
+.route-info-item strong {
+  color: #303746;
+
+  font-size: 12px;
+}
+
+.route-info-divider {
+  width: 1px;
+
+  background: rgba(150, 160, 170, 0.2);
+}
 
 /* =========================================================
    QR OVERLAY
@@ -1543,9 +1862,9 @@ button {
 .qr-overlay {
   position: fixed;
 
-  inset: 0;
+  z-index: 5000;
 
-  z-index: 9999;
+  inset: 0;
 
   display: flex;
   align-items: center;
@@ -1553,15 +1872,14 @@ button {
 
   padding: 20px;
 
-  background: rgba(40, 48, 58, 0.38);
+  background: rgba(39, 47, 58, 0.45);
 
   backdrop-filter: blur(5px);
 }
 
 .qr-panel {
-  width: 100%;
-  max-width: 430px;
-  max-height: calc(100vh - 40px);
+  width: min(100%, 440px);
+  max-height: 90vh;
 
   overflow-y: auto;
 
@@ -1572,8 +1890,8 @@ button {
   background: #e9eef3;
 
   box-shadow:
-    15px 15px 35px rgba(50, 60, 70, 0.28),
-    -10px -10px 25px rgba(255, 255, 255, 0.8);
+    15px 15px 35px rgba(40, 50, 60, 0.25),
+    -10px -10px 25px rgba(255, 255, 255, 0.85);
 }
 
 .qr-header {
@@ -1582,19 +1900,23 @@ button {
   justify-content: space-between;
 
   gap: 15px;
+
+  margin-bottom: 18px;
 }
 
 .qr-header span {
-  color: #8993a1;
+  color: #536dfe;
 
   font-size: 8px;
   font-weight: 800;
 
-  letter-spacing: 1.3px;
+  letter-spacing: 1.5px;
 }
 
 .qr-header h3 {
-  margin-top: 4px;
+  margin-top: 5px;
+
+  color: #29313d;
 
   font-size: 17px;
 }
@@ -1603,47 +1925,49 @@ button {
   width: 34px;
   height: 34px;
 
+  flex-shrink: 0;
+
   border-radius: 10px;
 
   color: #687384;
   background: #e9eef3;
 
-  font-size: 20px;
-
   box-shadow:
-    4px 4px 8px rgba(163, 177, 198, 0.3),
+    4px 4px 8px rgba(163, 177, 198, 0.35),
     -4px -4px 8px rgba(255, 255, 255, 0.8);
+
+  font-size: 20px;
 }
 
 .qr-route-summary {
-  margin-top: 18px;
-
-  padding: 13px;
-
-  border-radius: 13px;
-
   display: grid;
+
   grid-template-columns: 1fr auto 1fr;
 
   align-items: center;
 
   gap: 10px;
 
+  margin-bottom: 18px;
+
+  padding: 13px;
+
+  border-radius: 14px;
+
   background: #e9eef3;
 
   box-shadow:
-    inset 3px 3px 7px rgba(163, 177, 198, 0.2),
+    inset 3px 3px 7px rgba(163, 177, 198, 0.18),
     inset -3px -3px 7px rgba(255, 255, 255, 0.75);
 }
 
-.qr-route-summary > div:not(.qr-route-arrow) {
-  display: flex;
-  flex-direction: column;
-
-  gap: 3px;
+.qr-route-summary div:not(.qr-route-arrow) {
+  text-align: center;
 }
 
 .qr-route-summary span {
+  display: block;
+
   color: #8993a1;
 
   font-size: 7px;
@@ -1651,7 +1975,13 @@ button {
 }
 
 .qr-route-summary strong {
-  font-size: 12px;
+  display: block;
+
+  margin-top: 4px;
+
+  color: #303746;
+
+  font-size: 11px;
 }
 
 .qr-route-arrow {
@@ -1662,46 +1992,42 @@ button {
 }
 
 .qr-code-container {
-  width: 100%;
+  min-height: 310px;
 
-  margin: 18px 0;
+  display: grid;
+  place-items: center;
 
-  padding: 16px;
+  padding: 15px;
 
-  border-radius: 15px;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  border-radius: 16px;
 
   background: #ffffff;
 }
 
 .qr-code-image {
-  width: 260px;
-  max-width: 100%;
-
+  width: min(300px, 100%);
   height: auto;
 
   display: block;
+
+  border-radius: 8px;
 }
 
 .qr-loading {
-  min-height: 260px;
-
-  display: grid;
-  place-items: center;
-
   color: #8993a1;
 
   font-size: 11px;
+  font-weight: 600;
 }
 
 .qr-details {
   display: grid;
+
   grid-template-columns: repeat(3, 1fr);
 
   gap: 8px;
+
+  margin-top: 12px;
 }
 
 .qr-details > div {
@@ -1714,57 +2040,74 @@ button {
   background: #e9eef3;
 
   box-shadow:
-    inset 3px 3px 7px rgba(163, 177, 198, 0.2),
-    inset -3px -3px 7px rgba(255, 255, 255, 0.75);
-}
-
-.qr-details span,
-.qr-details strong {
-  display: block;
+    inset 2px 2px 5px rgba(163, 177, 198, 0.16),
+    inset -2px -2px 5px rgba(255, 255, 255, 0.75);
 }
 
 .qr-details span {
+  display: block;
+
   color: #8993a1;
 
   font-size: 7px;
 }
 
 .qr-details strong {
+  display: block;
+
   margin-top: 4px;
+
+  color: #303746;
 
   font-size: 11px;
 }
 
 .qr-info {
+  display: flex;
+  align-items: center;
+
+  gap: 9px;
+
   margin-top: 12px;
 
   padding: 11px;
 
-  border-radius: 11px;
+  border-radius: 12px;
 
-  display: flex;
-  align-items: flex-start;
+  color: #66717f;
 
-  gap: 8px;
+  background: #e0f1e8;
 
-  color: #697586;
-  background: #e1f1e7;
-
-  font-size: 9px;
+  font-size: 8px;
 }
 
 .qr-info-icon {
-  color: #2db273;
+  width: 22px;
+  height: 22px;
+
+  flex-shrink: 0;
+
+  display: grid;
+  place-items: center;
+
+  border-radius: 50%;
+
+  color: #ffffff;
+  background: #2db273;
 
   font-weight: 800;
+}
+
+.qr-info p {
+  line-height: 1.5;
 }
 
 .qr-actions {
   display: flex;
 
-  gap: 10px;
+  gap: 9px;
 
-  margin-top: 14px;
+  margin-top: 12px;
 }
 
 .qr-copy-button,
@@ -1775,13 +2118,16 @@ button {
 
   border-radius: 11px;
 
-  font-size: 10px;
+  font-size: 9px;
   font-weight: 800;
 }
 
 .qr-copy-button {
   color: #ffffff;
   background: #536dfe;
+
+  box-shadow:
+    4px 4px 9px rgba(163, 177, 198, 0.3);
 }
 
 .qr-done-button {
@@ -1789,23 +2135,22 @@ button {
   background: #e9eef3;
 
   box-shadow:
-    4px 4px 8px rgba(163, 177, 198, 0.3),
-    -4px -4px 8px rgba(255, 255, 255, 0.8);
+    4px 4px 9px rgba(163, 177, 198, 0.3),
+    -4px -4px 9px rgba(255, 255, 255, 0.8);
 }
 
-
 /* =========================================================
-   QR SCANNER
+   SCANNER
 ========================================================= */
 
 .scanner-container {
-  margin-top: 18px;
+  width: 100%;
 
   overflow: hidden;
 
-  border-radius: 16px;
+  border-radius: 15px;
 
-  background: #111820;
+  background: #111827;
 }
 
 .qr-reader {
@@ -1817,7 +2162,7 @@ button {
   width: 100% !important;
   height: auto !important;
 
-  border-radius: 14px;
+  border-radius: 15px;
 }
 
 .scanner-status {
@@ -1827,22 +2172,24 @@ button {
 
   border-radius: 10px;
 
-  color: #2d9f66;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 7px;
+
+  color: #2d9e66;
   background: #ddf1e6;
 
-  text-align: center;
-
-  font-size: 9px;
+  font-size: 8px;
   font-weight: 700;
+
+  text-align: center;
 }
 
 .scanner-status-dot {
-  display: inline-block;
-
   width: 7px;
   height: 7px;
-
-  margin-right: 6px;
 
   border-radius: 50%;
 
@@ -1854,17 +2201,17 @@ button {
 
   padding: 11px;
 
-  border-radius: 10px;
+  border-radius: 11px;
 
   display: flex;
   flex-direction: column;
 
-  gap: 3px;
+  gap: 4px;
 
-  color: #c5575d;
-  background: #f5dddd;
+  color: #bd5b61;
+  background: #f8e2e3;
 
-  font-size: 9px;
+  font-size: 8px;
 }
 
 .scanner-footer {
@@ -1872,11 +2219,394 @@ button {
 
   color: #8993a1;
 
+  font-size: 8px;
+
   text-align: center;
+}
+
+/* =========================================================
+   CITIZEN ROUTE PAGE
+========================================================= */
+
+.citizen-route-page {
+  width: 100%;
+  min-height: 100vh;
+
+  padding: 28px;
+
+  background: #e9eef3;
+}
+
+.citizen-header {
+  max-width: 1100px;
+
+  margin: 0 auto 18px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 20px;
+}
+
+.citizen-brand {
+  color: #536dfe;
+
+  font-size: 9px;
+  font-weight: 800;
+
+  letter-spacing: 2px;
+}
+
+.citizen-header h1 {
+  margin-top: 5px;
+
+  color: #29313d;
+
+  font-size: 24px;
+  font-weight: 800;
+}
+
+.citizen-header p {
+  margin-top: 5px;
+
+  color: #8993a1;
+
+  font-size: 10px;
+}
+
+.offline-badge {
+  padding: 9px 13px;
+
+  border-radius: 15px;
+
+  display: flex;
+  align-items: center;
+
+  gap: 7px;
+
+  color: #2d9e66;
+  background: #ddf1e6;
+
+  font-size: 8px;
+  font-weight: 800;
+}
+
+.offline-badge span {
+  width: 7px;
+  height: 7px;
+
+  border-radius: 50%;
+
+  background: #2db273;
+}
+
+.citizen-route-card,
+.citizen-map-wrapper,
+.citizen-info-card,
+.citizen-offline-info {
+  max-width: 1100px;
+
+  margin-left: auto;
+  margin-right: auto;
+
+  border-radius: 18px;
+
+  background: #e9eef3;
+
+  box-shadow:
+    8px 8px 18px rgba(163, 177, 198, 0.38),
+    -8px -8px 18px rgba(255, 255, 255, 0.9);
+}
+
+.citizen-route-card {
+  margin-bottom: 18px;
+
+  padding: 16px;
+
+  display: grid;
+
+  grid-template-columns: 1fr auto 1fr;
+
+  align-items: center;
+
+  gap: 20px;
+}
+
+.citizen-point {
+  text-align: center;
+}
+
+.citizen-point span {
+  display: block;
+
+  color: #8993a1;
+
+  font-size: 7px;
+  font-weight: 800;
+
+  letter-spacing: 1px;
+}
+
+.citizen-point strong {
+  display: block;
+
+  margin-top: 5px;
+
+  color: #303746;
+
+  font-size: 15px;
+}
+
+.citizen-point small {
+  display: block;
+
+  margin-top: 4px;
+
+  color: #8993a1;
+
+  font-size: 9px;
+}
+
+.citizen-arrow {
+  color: #536dfe;
+
+  font-size: 24px;
+  font-weight: 800;
+}
+
+.citizen-map-wrapper {
+  position: relative;
+
+  overflow: hidden;
+
+  padding: 0;
+}
+
+.citizen-leaflet-map {
+  width: 100%;
+  height: 520px;
+
+  min-height: 520px !important;
+
+  background: #eef2f7;
+}
+
+.citizen-map-message {
+  position: absolute;
+
+  z-index: 1000;
+
+  left: 18px;
+  bottom: 18px;
+
+  display: flex;
+  align-items: center;
+
+  gap: 9px;
+
+  padding: 10px 13px;
+
+  border-radius: 12px;
+
+  background: rgba(233, 238, 243, 0.94);
+
+  box-shadow:
+    4px 4px 10px rgba(163, 177, 198, 0.3),
+    -4px -4px 10px rgba(255, 255, 255, 0.85);
+}
+
+.citizen-map-message > span {
+  width: 25px;
+  height: 25px;
+
+  display: grid;
+  place-items: center;
+
+  border-radius: 50%;
+
+  color: #ffffff;
+  background: #2db273;
+
+  font-size: 11px;
+  font-weight: 800;
+}
+
+.citizen-map-message strong,
+.citizen-map-message small {
+  display: block;
+}
+
+.citizen-map-message strong {
+  color: #303746;
+
+  font-size: 9px;
+}
+
+.citizen-map-message small {
+  margin-top: 3px;
+
+  color: #8993a1;
+
+  font-size: 7px;
+}
+
+.citizen-info-grid {
+  max-width: 1100px;
+
+  margin: 18px auto;
+
+  display: grid;
+
+  grid-template-columns: repeat(3, 1fr);
+
+  gap: 14px;
+}
+
+.citizen-info-card {
+  padding: 16px;
+
+  text-align: center;
+}
+
+.citizen-info-card span {
+  display: block;
+
+  color: #8993a1;
+
+  font-size: 8px;
+  font-weight: 800;
+
+  letter-spacing: 1px;
+}
+
+.citizen-info-card strong {
+  display: block;
+
+  margin-top: 6px;
+
+  color: #303746;
+
+  font-size: 17px;
+}
+
+.citizen-safe {
+  color: #2db273 !important;
+}
+
+.citizen-offline-info {
+  padding: 15px;
+
+  display: flex;
+  align-items: center;
+
+  gap: 10px;
+}
+
+.citizen-offline-info > span {
+  width: 28px;
+  height: 28px;
+
+  display: grid;
+  place-items: center;
+
+  border-radius: 50%;
+
+  color: #ffffff;
+  background: #2db273;
+
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.citizen-offline-info strong {
+  color: #303746;
+
+  font-size: 10px;
+}
+
+.citizen-offline-info p {
+  margin-top: 3px;
+
+  color: #8993a1;
 
   font-size: 8px;
 }
 
+.citizen-loading,
+.citizen-error-page {
+  min-height: 100vh;
+
+  display: grid;
+  place-items: center;
+
+  padding: 20px;
+
+  background: #e9eef3;
+}
+
+.citizen-error-card {
+  width: min(100%, 400px);
+
+  padding: 30px;
+
+  border-radius: 20px;
+
+  text-align: center;
+
+  background: #e9eef3;
+
+  box-shadow:
+    8px 8px 18px rgba(163, 177, 198, 0.4),
+    -8px -8px 18px rgba(255, 255, 255, 0.9);
+}
+
+.citizen-error-icon {
+  width: 45px;
+  height: 45px;
+
+  margin: 0 auto 14px;
+
+  display: grid;
+  place-items: center;
+
+  border-radius: 50%;
+
+  color: #ffffff;
+  background: #e45c63;
+
+  font-size: 20px;
+  font-weight: 800;
+}
+
+.citizen-error-card h2 {
+  color: #303746;
+
+  font-size: 18px;
+}
+
+.citizen-error-card p {
+  margin-top: 8px;
+
+  color: #8993a1;
+
+  font-size: 10px;
+  line-height: 1.5;
+}
+
+.citizen-error-card button {
+  margin-top: 18px;
+
+  padding: 11px 18px;
+
+  border-radius: 11px;
+
+  color: #ffffff;
+  background: #536dfe;
+
+  font-size: 9px;
+  font-weight: 800;
+}
 
 /* =========================================================
    RESPONSIVE
@@ -1895,46 +2625,37 @@ button {
   .bottom-grid {
     grid-template-columns: 1fr;
   }
+
+  .emergency-map {
+    height: 540px;
+    min-height: 540px;
+  }
 }
 
 @media (max-width: 900px) {
-  .route-select-grid {
-    grid-template-columns: 1fr;
+  .main-content {
+    padding: 24px;
   }
 
-  .resq-map-selector {
-    flex-direction: column;
-    align-items: stretch;
-  }
-
-  .resq-map-selector-select {
-    width: 100%;
-    max-width: 100%;
-  }
-
-  .active-map-info {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .active-map-stats {
-    width: 100%;
-
-    justify-content: space-between;
-  }
-
-  .map-container-wrapper {
-    height: 500px;
-    min-height: 500px;
-    max-height: 500px;
-  }
-
-  .resqmesh-map {
-    height: 500px !important;
+  .route-control-panel {
+    width: calc(100% - 32px);
   }
 
   .route-info-card {
-    grid-template-columns: repeat(2, 1fr);
+    display: none;
+  }
+
+  .map-mini-legend {
+    max-width: calc(100% - 32px);
+  }
+
+  .emergency-map {
+    height: 520px;
+    min-height: 520px;
+  }
+
+  .citizen-route-page {
+    padding: 20px;
   }
 }
 
@@ -1962,9 +2683,29 @@ button {
   .kpi-grid {
     grid-template-columns: 1fr;
   }
+
+  .citizen-header {
+    align-items: flex-start;
+
+    flex-direction: column;
+  }
+
+  .citizen-route-card {
+    grid-template-columns: 1fr;
+  }
+
+  .citizen-arrow {
+    transform: rotate(90deg);
+
+    justify-self: center;
+  }
+
+  .citizen-info-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
-@media (max-width: 550px) {
+@media (max-width: 600px) {
   .main-content {
     padding: 14px;
   }
@@ -1980,35 +2721,45 @@ button {
   }
 
   .dashboard-grid {
-    display: block;
+    gap: 14px;
   }
 
   .map-card,
-  .emergency-card {
-    margin-bottom: 18px;
+  .emergency-card,
+  .network-card,
+  .route-card {
+    padding: 15px;
   }
 
-  .map-container-wrapper {
-    height: 430px;
-    min-height: 430px;
-    max-height: 430px;
+  .emergency-map {
+    height: 500px;
+    min-height: 500px;
   }
 
-  .resqmesh-map {
-    height: 430px !important;
+  .route-control-panel {
+    top: 10px;
+    left: 10px;
+
+    width: calc(100% - 20px);
+
+    padding: 12px;
   }
 
-  .route-control-heading {
-    align-items: flex-start;
+  .route-select-row {
     flex-direction: column;
+
+    align-items: stretch;
   }
 
-  .active-map-stats {
-    gap: 10px;
+  .route-arrow {
+    display: none;
   }
 
-  .route-info-card {
-    grid-template-columns: repeat(2, 1fr);
+  .map-overlay-legend {
+    left: 10px;
+    bottom: 10px;
+
+    max-width: calc(100% - 20px);
   }
 
   .qr-overlay {
@@ -2016,8 +2767,60 @@ button {
   }
 
   .qr-panel {
-    max-height: calc(100vh - 20px);
-
     padding: 16px;
+
+    border-radius: 18px;
+  }
+
+  .qr-details {
+    grid-template-columns: 1fr;
+  }
+
+  .qr-actions {
+    flex-direction: column;
+  }
+
+  .citizen-route-page {
+    padding: 12px;
+  }
+
+  .citizen-header h1 {
+    font-size: 20px;
+  }
+
+  .citizen-leaflet-map {
+    height: 440px;
+
+    min-height: 440px !important;
+  }
+
+  .citizen-map-message {
+    left: 10px;
+    right: 10px;
+    bottom: 10px;
+  }
+}
+
+@media (max-width: 420px) {
+  .emergency-map {
+    height: 470px;
+    min-height: 470px;
+  }
+
+  .route-control-panel {
+    width: calc(100% - 16px);
+
+    top: 8px;
+    left: 8px;
+  }
+
+  .map-overlay-legend {
+    font-size: 7px;
+  }
+
+  .citizen-leaflet-map {
+    height: 400px;
+
+    min-height: 400px !important;
   }
 }
