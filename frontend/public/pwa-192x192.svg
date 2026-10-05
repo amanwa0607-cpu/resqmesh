@@ -1,0 +1,39 @@
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  width="192"
+  height="192"
+  viewBox="0 0 192 192"
+>
+  <rect
+    width="192"
+    height="192"
+    rx="42"
+    fill="#536dfe"
+  />
+
+  <path
+    d="M96 35
+       L145 55
+       V91
+       C145 123 125 147 96 158
+       C67 147 47 123 47 91
+       V55
+       Z"
+    fill="#ffffff"
+  />
+
+  <path
+    d="M96 62
+       L103 80
+       H122
+       L107 91
+       L113 110
+       L96 99
+       L79 110
+       L85 91
+       L70 80
+       H89
+       Z"
+    fill="#536dfe"
+  />
+</svg>

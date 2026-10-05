@@ -1,0 +1,39 @@
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  width="512"
+  height="512"
+  viewBox="0 0 512 512"
+>
+  <rect
+    width="512"
+    height="512"
+    rx="110"
+    fill="#536dfe"
+  />
+
+  <path
+    d="M256 92
+       L387 145
+       V242
+       C387 327 333 392 256 420
+       C179 392 125 327 125 242
+       V145
+       Z"
+    fill="#ffffff"
+  />
+
+  <path
+    d="M256 165
+       L275 213
+       H326
+       L286 242
+       L302 294
+       L256 264
+       L210 294
+       L226 242
+       L186 213
+       H237
+       Z"
+    fill="#536dfe"
+  />
+</svg>
