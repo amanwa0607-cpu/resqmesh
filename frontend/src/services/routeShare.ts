@@ -10,9 +10,9 @@ export interface SharedRoutePayload {
   path: [number, number][];
 }
 
-/* =========================================================
+/* =========================================
    BASE64 URL ENCODING
-========================================================= */
+========================================= */
 
 function encodeBase64Url(
   value: string
@@ -46,8 +46,7 @@ function decodeBase64Url(
       (4 - (base64.length % 4)) % 4
     );
 
-  const binary =
-    atob(padded);
+  const binary = atob(padded);
 
   const bytes =
     Uint8Array.from(
@@ -56,14 +55,12 @@ function decodeBase64Url(
         char.charCodeAt(0)
     );
 
-  return new TextDecoder().decode(
-    bytes
-  );
+  return new TextDecoder().decode(bytes);
 }
 
-/* =========================================================
-   COMPACT ROUTE PATH
-========================================================= */
+/* =========================================
+   COMPACT PATH ENCODING
+========================================= */
 
 function encodePath(
   path: [number, number][]
@@ -87,10 +84,8 @@ function encodePath(
     index < path.length;
     index++
   ) {
-    const [
-      lat,
-      lng,
-    ] = path[index];
+    const [lat, lng] =
+      path[index];
 
     const deltaLat =
       lat - previousLat;
@@ -144,11 +139,8 @@ function decodePath(
 
   const path:
     [number, number][] = [
-      [
-        currentLat,
-        currentLng,
-      ],
-    ];
+    [currentLat, currentLng],
+  ];
 
   for (
     let index = 1;
@@ -187,9 +179,9 @@ function decodePath(
   return path;
 }
 
-/* =========================================================
+/* =========================================
    CREATE RM2 PAYLOAD
-========================================================= */
+========================================= */
 
 export function createRoutePayload(
   hazardId: string,
@@ -226,6 +218,7 @@ export function createRoutePayload(
   }
 
   if (
+    !path ||
     path.length === 0
   ) {
     throw new Error(
@@ -248,9 +241,9 @@ export function createRoutePayload(
   ].join("|");
 }
 
-/* =========================================================
+/* =========================================
    DECODE RM2 PAYLOAD
-========================================================= */
+========================================= */
 
 export function decodeRoutePayload(
   rawPayload: string
@@ -294,6 +287,15 @@ export function decodeRoutePayload(
     );
   }
 
+  if (
+    !hazardId ||
+    !shelterId
+  ) {
+    throw new Error(
+      "Invalid route endpoints."
+    );
+  }
+
   const distance =
     Number(distanceText);
 
@@ -314,9 +316,7 @@ export function decodeRoutePayload(
   }
 
   const path =
-    decodePath(
-      encodedPath
-    );
+    decodePath(encodedPath);
 
   if (
     path.length === 0
@@ -337,9 +337,9 @@ export function decodeRoutePayload(
   };
 }
 
-/* =========================================================
-   CREATE QR SHARE URL
-========================================================= */
+/* =========================================
+   CREATE SHARE URL
+========================================= */
 
 export function createRouteShareUrl(
   payload: string
@@ -353,19 +353,14 @@ export function createRouteShareUrl(
   }
 
   const encoded =
-    encodeBase64Url(
-      payload
-    );
+    encodeBase64Url(payload);
 
   /*
-   * Laptop:
-   * localhost:5175
+   * IMPORTANT
    *
-   * Phone:
-   * laptop LAN IP
-   *
-   * Current laptop IP:
-   * 10.107.13.107
+   * Keep this URL format.
+   * Phone camera → CitizenRoute
+   * already works with this.
    */
 
   const host =
@@ -383,9 +378,9 @@ export function createRouteShareUrl(
   );
 }
 
-/* =========================================================
-   DECODE QR SHARE URL
-========================================================= */
+/* =========================================
+   DECODE SHARE URL
+========================================= */
 
 export function decodeRouteShareUrl(
   encoded: string
@@ -397,22 +392,28 @@ export function decodeRouteShareUrl(
   }
 
   const payload =
-    decodeBase64Url(
-      encoded
-    );
+    decodeBase64Url(encoded);
 
   return decodeRoutePayload(
     payload
   );
 }
 
-/* =========================================================
+/* =========================================
    GENERATE QR CODE
-========================================================= */
+========================================= */
 
 export async function generateRouteQRCode(
   payload: string
 ): Promise<string> {
+  if (
+    !payload.startsWith("RM2|")
+  ) {
+    throw new Error(
+      "Invalid RM2 payload."
+    );
+  }
+
   const shareUrl =
     createRouteShareUrl(
       payload

@@ -2,16 +2,16 @@ import "./App.css";
 
 import EmergencyMap from "./components/map/EmergencyMap";
 import CitizenRoute from "./components/map/CitizenRoute";
+import CommunicationStatus from "./components/communicationStatus";
 
 function App() {
   const isCitizenRoute =
-  window.location.hash.startsWith(
-    "#/route"
-  );
+    window.location.hash.startsWith("#/route");
 
-if (isCitizenRoute) {
-  return <CitizenRoute />;
-}
+  if (isCitizenRoute) {
+    return <CitizenRoute />;
+  }
+
   return (
     <div className="app">
 
@@ -266,6 +266,13 @@ if (isCitizenRoute) {
           </div>
 
         </section>
+
+
+        {/* =================================
+            RESQMESH COMMUNICATION STATUS
+        ================================== */}
+
+        <CommunicationStatus />
 
 
         {/* =================================

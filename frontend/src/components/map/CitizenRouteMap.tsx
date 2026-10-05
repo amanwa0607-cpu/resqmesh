@@ -1,6 +1,4 @@
-import {
-  useMemo,
-} from "react";
+import { useMemo } from "react";
 
 import {
   MapContainer,
@@ -21,64 +19,51 @@ import type {
   SharedRoutePayload,
 } from "../../services/routeShare";
 
-
 interface CitizenRouteMapProps {
   route: SharedRoutePayload;
 }
-
 
 const MAP_CENTER: [number, number] = [
   650,
   750,
 ];
 
-
 const zoneColors = {
   high: "#e45c63",
   medium: "#f0a64a",
   safe: "#2db273",
-};
-
+} as const;
 
 export default function CitizenRouteMap({
   route,
 }: CitizenRouteMapProps) {
+  const hazard = useMemo(
+    () =>
+      mapLocations.find(
+        (location) =>
+          location.id === route.hazardId
+      ),
+    [route.hazardId]
+  );
 
-  const hazard =
-    useMemo(
-      () =>
-        mapLocations.find(
-          (location) =>
-            location.id ===
-            route.hazardId
-        ),
-      [route.hazardId]
-    );
-
-
-  const shelter =
-    useMemo(
-      () =>
-        mapLocations.find(
-          (location) =>
-            location.id ===
-            route.shelterId
-        ),
-      [route.shelterId]
-    );
-
+  const shelter = useMemo(
+    () =>
+      mapLocations.find(
+        (location) =>
+          location.id === route.shelterId
+      ),
+    [route.shelterId]
+  );
 
   return (
     <div className="citizen-route-page">
 
-      {/* =================================
+      {/* ================================
           HEADER
       ================================= */}
 
       <div className="citizen-header">
-
         <div>
-
           <span className="citizen-brand">
             RESQMESH
           </span>
@@ -90,29 +75,22 @@ export default function CitizenRouteMap({
           <p>
             Route received from operator
           </p>
-
         </div>
-
 
         <div className="offline-badge">
-
           <span />
-
           OFFLINE READY
-
         </div>
-
       </div>
 
 
-      {/* =================================
+      {/* ================================
           ROUTE SUMMARY
       ================================= */}
 
       <div className="citizen-route-card">
 
         <div className="citizen-point">
-
           <span>
             EMERGENCY
           </span>
@@ -122,20 +100,16 @@ export default function CitizenRouteMap({
           </strong>
 
           <small>
-            {hazard?.name ??
+            {hazard?.name ||
               "Emergency Zone"}
           </small>
-
         </div>
-
 
         <div className="citizen-arrow">
           →
         </div>
 
-
         <div className="citizen-point">
-
           <span>
             SAFE SHELTER
           </span>
@@ -145,22 +119,22 @@ export default function CitizenRouteMap({
           </strong>
 
           <small>
-            {shelter?.name ??
+            {shelter?.name ||
               "Evacuation Shelter"}
           </small>
-
         </div>
 
       </div>
 
 
-      {/* =================================
+      {/* ================================
           MAP
       ================================= */}
 
       <div className="citizen-map-wrapper">
 
         <MapContainer
+          className="citizen-leaflet-map"
           crs={CRS.Simple}
           center={MAP_CENTER}
           zoom={-1}
@@ -176,156 +150,134 @@ export default function CitizenRouteMap({
           style={{
             width: "100%",
             height: "100%",
-            background:
-              "#eef2f7",
+            minHeight: "520px",
+            background: "#eef2f7",
           }}
         >
 
-          {/* ZONES */}
+          {/* ================================
+              ZONES
+          ================================= */}
 
-          {zones.map(
-            (zone) => (
+          {zones.map((zone) => {
+            const zoneColor =
+              zoneColors[zone.risk];
 
+            return (
               <Polygon
                 key={zone.id}
-                positions={
-                  zone.points
-                }
+                positions={zone.points}
                 pathOptions={{
-                  color:
-                    zoneColors[
-                      zone.risk
-                    ],
-
-                  fillColor:
-                    zoneColors[
-                      zone.risk
-                    ],
-
+                  color: zoneColor,
+                  fillColor: zoneColor,
                   fillOpacity:
                     zone.risk === "safe"
-                      ? 0.10
+                      ? 0.1
                       : 0.14,
-
                   weight: 2,
-
-                  dashArray:
-                    "8 6",
+                  dashArray: "8 6",
                 }}
               >
-
                 <Tooltip>
-
-                  {zone.name}
-                  {" · "}
+                  <strong>
+                    {zone.name}
+                  </strong>
+                  <br />
+                  Risk:{" "}
                   {zone.risk.toUpperCase()}
-                  {" RISK"}
-
                 </Tooltip>
-
               </Polygon>
-
-            )
-          )}
-
-
-          {/* ROADS */}
-
-          {roads.map(
-            (road) => {
-
-              let color =
-                "#aab3c2";
-
-              if (
-                road.status ===
-                "blocked"
-              ) {
-                color =
-                  "#e45c63";
-              }
-
-              if (
-                road.status ===
-                "caution"
-              ) {
-                color =
-                  "#f0a64a";
-              }
+            );
+          })}
 
 
-              return (
+          {/* ================================
+              ROADS
+          ================================= */}
 
-                <Polyline
-                  key={road.id}
-                  positions={
-                    road.points
-                  }
-                  pathOptions={{
-                    color,
-                    weight:
-                      road.status ===
-                      "blocked"
-                        ? 6
-                        : 4,
+          {roads.map((road) => {
+            let roadColor =
+              "#aab3c2";
 
-                    opacity: 0.75,
-
-                    dashArray:
-                      road.status ===
-                      "blocked"
-                        ? "10 7"
-                        : undefined,
-                  }}
-                >
-
-                  <Tooltip>
-
-                    {road.name}
-                    {" · "}
-                    {road.status.toUpperCase()}
-
-                  </Tooltip>
-
-                </Polyline>
-
-              );
+            if (
+              road.status ===
+              "blocked"
+            ) {
+              roadColor =
+                "#e45c63";
             }
-          )}
+
+            if (
+              road.status ===
+              "caution"
+            ) {
+              roadColor =
+                "#f0a64a";
+            }
+
+            return (
+              <Polyline
+                key={road.id}
+                positions={road.points}
+                pathOptions={{
+                  color: roadColor,
+                  weight:
+                    road.status ===
+                    "blocked"
+                      ? 6
+                      : 4,
+                  opacity: 0.8,
+                  dashArray:
+                    road.status ===
+                    "blocked"
+                      ? "10 7"
+                      : undefined,
+                }}
+              >
+                <Tooltip>
+                  <strong>
+                    {road.name}
+                  </strong>
+                  <br />
+                  Status:{" "}
+                  {road.status.toUpperCase()}
+                </Tooltip>
+              </Polyline>
+            );
+          })}
 
 
-          {/* ROUTE */}
+          {/* ================================
+              EVACUATION ROUTE
+          ================================= */}
 
           {route.path.length > 1 && (
-
             <Polyline
-              positions={
-                route.path
-              }
+              positions={route.path}
               pathOptions={{
                 color: "#536dfe",
-                weight: 10,
+                weight: 9,
                 opacity: 1,
-                lineCap: "round",
-                lineJoin: "round",
               }}
             >
-
               <Tooltip sticky>
-
-                YOUR EVACUATION ROUTE
-
+                <strong>
+                  YOUR EVACUATION ROUTE
+                </strong>
+                <br />
+                {route.hazardId}
+                {" → "}
+                {route.shelterId}
               </Tooltip>
-
             </Polyline>
-
           )}
 
 
-          {/* HAZARD */}
+          {/* ================================
+              HAZARD AREA
+          ================================= */}
 
           {hazard && (
-
             <Polygon
               positions={[
                 [
@@ -351,23 +303,30 @@ export default function CitizenRouteMap({
                 fillOpacity: 0.18,
                 weight: 2,
               }}
-            />
-
+            >
+              <Tooltip>
+                <strong>
+                  {hazard.name}
+                </strong>
+                <br />
+                Hazard Zone
+              </Tooltip>
+            </Polygon>
           )}
 
         </MapContainer>
 
 
-        {/* MAP MESSAGE */}
+        {/* ================================
+            MAP MESSAGE
+        ================================= */}
 
         <div className="citizen-map-message">
-
           <span>
             ✓
           </span>
 
           <div>
-
             <strong>
               Follow the highlighted route
             </strong>
@@ -376,22 +335,19 @@ export default function CitizenRouteMap({
               Avoid blocked roads and
               hazardous zones.
             </small>
-
           </div>
-
         </div>
 
       </div>
 
 
-      {/* =================================
-          INFORMATION
+      {/* ================================
+          ROUTE INFORMATION
       ================================= */}
 
       <div className="citizen-info-grid">
 
         <div className="citizen-info-card">
-
           <span>
             DISTANCE
           </span>
@@ -399,12 +355,9 @@ export default function CitizenRouteMap({
           <strong>
             {route.distance} m
           </strong>
-
         </div>
 
-
         <div className="citizen-info-card">
-
           <span>
             BLOCKED ROADS
           </span>
@@ -412,12 +365,9 @@ export default function CitizenRouteMap({
           <strong>
             {route.blockedRoadsAvoided}
           </strong>
-
         </div>
 
-
         <div className="citizen-info-card">
-
           <span>
             ROUTE STATUS
           </span>
@@ -425,14 +375,13 @@ export default function CitizenRouteMap({
           <strong className="citizen-safe">
             SAFE
           </strong>
-
         </div>
 
       </div>
 
 
-      {/* =================================
-          OFFLINE MESSAGE
+      {/* ================================
+          OFFLINE INFORMATION
       ================================= */}
 
       <div className="citizen-offline-info">
@@ -442,7 +391,6 @@ export default function CitizenRouteMap({
         </span>
 
         <div>
-
           <strong>
             Route stored locally
           </strong>
@@ -452,7 +400,6 @@ export default function CitizenRouteMap({
             viewed even when the network
             is unavailable.
           </p>
-
         </div>
 
       </div>

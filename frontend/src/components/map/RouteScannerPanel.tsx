@@ -11,6 +11,7 @@ import {
 
 import {
   decodeRoutePayload,
+  decodeRouteShareUrl,
 } from "../../services/routeShare";
 
 import type {
@@ -58,7 +59,6 @@ export default function RouteScannerPanel({
       }
 
       scanner.clear();
-
     } catch (err) {
       console.error(
         "Scanner stop error:",
@@ -92,17 +92,102 @@ export default function RouteScannerPanel({
           },
           async (decodedText) => {
             try {
-              const route =
-                decodeRoutePayload(
-                  decodedText
-                );
+              console.log(
+                "[ResQMesh Scanner] QR:",
+                decodedText
+              );
+
+              let route:
+                SharedRoutePayload;
+
+              /*
+               * CASE 1:
+               * Raw RM2 payload
+               *
+               * RM2|HZ-01|S-01|680|3|...
+               */
+              if (
+                decodedText
+                  .trim()
+                  .startsWith("RM2|")
+              ) {
+                route =
+                  decodeRoutePayload(
+                    decodedText
+                  );
+              }
+
+              /*
+               * CASE 2:
+               * ResQMesh QR URL
+               *
+               * http://.../#/route?d=...
+               */
+              else {
+                const scannedUrl =
+                  new URL(
+                    decodedText
+                  );
+
+                const hash =
+                  scannedUrl.hash;
+
+                if (
+                  !hash.startsWith(
+                    "#/route"
+                  )
+                ) {
+                  throw new Error(
+                    "Invalid ResQMesh QR."
+                  );
+                }
+
+                const queryStart =
+                  hash.indexOf("?");
+
+                if (
+                  queryStart === -1
+                ) {
+                  throw new Error(
+                    "Route data missing."
+                  );
+                }
+
+                const query =
+                  hash.slice(
+                    queryStart + 1
+                  );
+
+                const params =
+                  new URLSearchParams(
+                    query
+                  );
+
+                const encoded =
+                  params.get("d");
+
+                if (!encoded) {
+                  throw new Error(
+                    "Route data missing."
+                  );
+                }
+
+                route =
+                  decodeRouteShareUrl(
+                    encoded
+                  );
+              }
+
+              console.log(
+                "[ResQMesh Scanner] Route decoded:",
+                route
+              );
 
               await stopScanner();
 
               setScanning(false);
 
               onRouteReceived(route);
-
             } catch (err) {
               console.error(
                 "QR decode error:",
@@ -118,7 +203,6 @@ export default function RouteScannerPanel({
             // Ignore normal scanning frames
           }
         );
-
       } catch (err) {
         console.error(
           "Camera error:",
@@ -148,13 +232,9 @@ export default function RouteScannerPanel({
 
   return (
     <div className="qr-overlay">
-
       <div className="qr-panel scanner-panel">
 
-        {/* HEADER */}
-
         <div className="qr-header">
-
           <div>
             <span>
               RESQMESH
@@ -172,23 +252,14 @@ export default function RouteScannerPanel({
           >
             ×
           </button>
-
         </div>
 
-
-        {/* SCANNER */}
-
         <div className="scanner-container">
-
           <div
             id="resqmesh-qr-reader"
             className="qr-reader"
           />
-
         </div>
-
-
-        {/* STATUS */}
 
         {scanning && !error && (
           <div className="scanner-status">
@@ -198,7 +269,6 @@ export default function RouteScannerPanel({
             ResQMesh QR code
           </div>
         )}
-
 
         {error && (
           <div className="scanner-error">
@@ -212,21 +282,14 @@ export default function RouteScannerPanel({
           </div>
         )}
 
-
-        {/* FOOTER */}
-
         <div className="scanner-footer">
-
           <span>
             🔒 Route data is processed
             locally on this device.
           </span>
-
         </div>
 
-
         <div className="qr-actions">
-
           <button
             className="qr-done-button"
             type="button"
@@ -234,11 +297,9 @@ export default function RouteScannerPanel({
           >
             Cancel
           </button>
-
         </div>
 
       </div>
-
     </div>
   );
 }
